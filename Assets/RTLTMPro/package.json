@@ -1,9 +1,9 @@
 {
-  "name": "hk1ll3r.rtltmpro",
+  "name": "com.nosuchstudio.rtltmpro",
   "displayName": "RTL Text Mesh Pro",
   "version": "3.3.2",
   "unity": "2019.1",
-  "description": "This plugin adds Right-to-left language support to TextMeshPro Unity package. You need to have TextMeshPro plugin in your project.",
+  "description": "This package adds Right-to-left language support to TextMeshPro Unity package. You need to have TextMeshPro in your project.",
   "keywords": [
     "TMPro",
     "TextMeshPro",
@@ -25,13 +25,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mnarimani/RTLTMPro.git",
+    "url": "https://github.com/hk1ll3r/RTLTMPro.git",
     "directory": "Assets/RTLTMPro"
   },
   "bugs": {
-    "url": "https://github.com/mnarimani/RTLTMPro/issues"
+    "url": "https://github.com/hk1ll3r/RTLTMPro/issues"
   },
-  "homepage": "https://github.com/mnarimani/RTLTMPro#readme",
+  "homepage": "https://github.com/hk1ll3r/RTLTMPro#readme",
   "category": "Utility",
   "dependencies": {}
 }
