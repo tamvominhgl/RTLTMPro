@@ -1,7 +1,7 @@
 {
   "name": "com.nosuchstudio.rtltmpro",
   "displayName": "RTL Text Mesh Pro",
-  "version": "3.3.5",
+  "version": "3.3.6",
   "unity": "2019.1",
   "description": "This package adds Right-to-left language support to TextMeshPro Unity package. You need to have TextMeshPro in your project.",
   "keywords": [
@@ -26,7 +26,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/hk1ll3r/RTLTMPro.git",
-    "directory": "Assets/RTLTMPro"
+    "directory": "UPMPackage"
   },
   "bugs": {
     "url": "https://github.com/hk1ll3r/RTLTMPro/issues"
