@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 690ad0c3392fb7c44a5f52ab80cd46e4
+=======
+guid: a29381f5931dd4546a4746fb3c07d3a5
+>>>>>>> 705e8ae (add meta files)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
