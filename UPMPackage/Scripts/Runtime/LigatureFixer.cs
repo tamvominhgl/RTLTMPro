@@ -120,6 +120,7 @@ namespace RTLTMPro
                             isAfterWhiteSpace && isSpecialPunctuation ||
                             isBeforeWhiteSpace && isAfterRTLCharacter ||
                             isBeforeRTLCharacter && isAfterWhiteSpace ||
+                            characterAtThisIndex != '؟' || // vmtam: added
                             (isBeforeRTLCharacter || isAfterRTLCharacter) && isUnderline)
                         {
                             FlushBufferToOutput(LtrTextHolder, output);
