@@ -85,7 +85,7 @@ namespace RTLTMPro
                         output.Set(i, (char)(converted + 2));
                     } else
                     {
-                        output.Set(i, (char)converted);
+                        output.Set(i, (char)iChar); //vmtam: use original iChar since many fonts don't have full glyphs for Arabic Presentation Forms
                     }
                 }
 
