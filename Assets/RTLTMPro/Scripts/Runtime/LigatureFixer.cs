@@ -120,6 +120,11 @@ namespace RTLTMPro
                             isAfterWhiteSpace && isSpecialPunctuation ||
                             isBeforeWhiteSpace && isAfterRTLCharacter ||
                             isBeforeRTLCharacter && isAfterWhiteSpace ||
+                            // vmtam: add exceptional cases
+                            characterAtThisIndex == '"' ||
+                            characterAtThisIndex == '،' && Char32Utils.IsNumber(previousCharacter, preserveNumbers, farsi) ||
+                            characterAtThisIndex == '.' && nextCharacter == '.' && Char32Utils.IsNumber(previousCharacter, preserveNumbers, farsi) ||
+                            // vmtam: end modification
                             (isBeforeRTLCharacter || isAfterRTLCharacter) && isUnderline)
                         {
                             FlushBufferToOutput(LtrTextHolder, output);
