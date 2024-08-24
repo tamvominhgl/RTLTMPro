@@ -51,6 +51,41 @@ namespace RTLTMPro
 
                 if (fixTextTags)
                 {
+                    // skip tags to correct previousCharacter
+                    var previous = i - 1;
+                    while (previousCharacter == '>')
+                    {
+                        // We need to check if it is actually the beginning of a tag.
+                        bool isValidTag = false;
+
+                        for (int j = previous - 1; j >= 0; j--)
+                        {
+                            var jChar = input.Get(j);
+
+                            if (jChar == '<')
+                            {
+                                var jPlus1Char = input.Get(j + 1);
+                                // Tags do not start with space
+                                if (jPlus1Char == ' ')
+                                {
+                                    break;
+                                }
+                                isValidTag = true;
+                                previous = j - 1;
+                                break;
+                            }
+                        }
+
+                        if (isValidTag)
+                        {
+                            previousCharacter = previous >= 0 ? input.Get(previous) : default;
+                            continue;
+                        } else
+                        {
+                            break; // break the while to correct previousCharacter
+                        }
+                    }
+
                     if (characterAtThisIndex == '>')
                     {
                         // We need to check if it is actually the beginning of a tag.
