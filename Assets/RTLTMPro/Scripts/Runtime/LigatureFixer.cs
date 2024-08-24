@@ -124,6 +124,9 @@ namespace RTLTMPro
                         {
                             FlushBufferToOutput(LtrTextHolder, output);
                             output.Append(characterAtThisIndex);
+                        } else if (characterAtThisIndex == '.' && LtrTextHolder.Count == 0)
+                        {
+                            output.Append(characterAtThisIndex);
                         } else
                         {
                             LtrTextHolder.Add(characterAtThisIndex);
