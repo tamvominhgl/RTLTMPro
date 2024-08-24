@@ -111,7 +111,7 @@ namespace RTLTMPro
                         bool isBeforeRTLCharacter = Char32Utils.IsRTLCharacter(nextCharacter);
                         bool isBeforeWhiteSpace = Char32Utils.IsWhiteSpace(nextCharacter);
                         bool isAfterWhiteSpace = Char32Utils.IsWhiteSpace(previousCharacter);
-                        bool isUnderline = characterAtThisIndex == '_';
+                        bool isConnector = characterAtThisIndex == '_' || characterAtThisIndex == '-';
                         bool isSpecialPunctuation = characterAtThisIndex == '.' ||
                                                     characterAtThisIndex == '،' ||
                                                     characterAtThisIndex == '؛';
@@ -120,7 +120,7 @@ namespace RTLTMPro
                             isAfterWhiteSpace && isSpecialPunctuation ||
                             isBeforeWhiteSpace && isAfterRTLCharacter ||
                             isBeforeRTLCharacter && isAfterWhiteSpace ||
-                            (isBeforeRTLCharacter || isAfterRTLCharacter) && isUnderline)
+                            (isBeforeRTLCharacter || isAfterRTLCharacter) && isConnector)
                         {
                             FlushBufferToOutput(LtrTextHolder, output);
                             output.Append(characterAtThisIndex);
