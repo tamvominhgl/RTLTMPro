@@ -111,7 +111,7 @@ namespace RTLTMPro
                         bool isBeforeRTLCharacter = Char32Utils.IsRTLCharacter(nextCharacter);
                         bool isBeforeWhiteSpace = Char32Utils.IsWhiteSpace(nextCharacter);
                         bool isAfterWhiteSpace = Char32Utils.IsWhiteSpace(previousCharacter);
-                        bool isUnderline = characterAtThisIndex == '_';
+                        bool isConnector = characterAtThisIndex == '_' || characterAtThisIndex == '-';
                         bool isSpecialPunctuation = characterAtThisIndex == '.' ||
                                                     characterAtThisIndex == '،' ||
                                                     characterAtThisIndex == '؛';
@@ -120,14 +120,12 @@ namespace RTLTMPro
                             isAfterWhiteSpace && isSpecialPunctuation ||
                             isBeforeWhiteSpace && isAfterRTLCharacter ||
                             isBeforeRTLCharacter && isAfterWhiteSpace ||
-                            // vmtam: add exceptional cases
-                            characterAtThisIndex == '"' ||
-                            characterAtThisIndex == '،' && Char32Utils.IsNumber(previousCharacter, preserveNumbers, farsi) ||
-                            characterAtThisIndex == '.' && nextCharacter == '.' && Char32Utils.IsNumber(previousCharacter, preserveNumbers, farsi) ||
-                            // vmtam: end modification
-                            (isBeforeRTLCharacter || isAfterRTLCharacter) && isUnderline)
+                            (isBeforeRTLCharacter || isAfterRTLCharacter) && isConnector)
                         {
                             FlushBufferToOutput(LtrTextHolder, output);
+                            output.Append(characterAtThisIndex);
+                        } else if (characterAtThisIndex == '.' && LtrTextHolder.Count == 0)
+                        {
                             output.Append(characterAtThisIndex);
                         } else
                         {
