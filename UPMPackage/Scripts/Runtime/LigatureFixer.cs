@@ -112,6 +112,7 @@ namespace RTLTMPro
                         bool isBeforeWhiteSpace = Char32Utils.IsWhiteSpace(nextCharacter);
                         bool isAfterWhiteSpace = Char32Utils.IsWhiteSpace(previousCharacter);
                         bool isConnector = characterAtThisIndex == '_' || characterAtThisIndex == '-';
+                        bool isQuotation = characterAtThisIndex == '"';
                         bool isSpecialPunctuation = characterAtThisIndex == '.' ||
                                                     characterAtThisIndex == '،' ||
                                                     characterAtThisIndex == '؛';
@@ -120,11 +121,12 @@ namespace RTLTMPro
                             isAfterWhiteSpace && isSpecialPunctuation ||
                             isBeforeWhiteSpace && isAfterRTLCharacter ||
                             isBeforeRTLCharacter && isAfterWhiteSpace ||
-                            (isBeforeRTLCharacter || isAfterRTLCharacter) && isConnector)
+                            isAfterRTLCharacter && nextCharacter == '"' ||
+                            (isBeforeRTLCharacter || isAfterRTLCharacter) && (isConnector || isQuotation))
                         {
                             FlushBufferToOutput(LtrTextHolder, output);
                             output.Append(characterAtThisIndex);
-                        } else if (characterAtThisIndex == '.' && LtrTextHolder.Count == 0)
+                        } else if (characterAtThisIndex == '.' && LtrTextHolder.Count == 0) // '.' ends of english words
                         {
                             output.Append(characterAtThisIndex);
                         } else
@@ -150,12 +152,14 @@ namespace RTLTMPro
                     bool isBeforeNumber = Char32Utils.IsNumber(nextCharacter, preserveNumbers, farsi);
                     bool isAfterSymbol = Char32Utils.IsSymbol(previousCharacter);
                     bool isBeforeSymbol = Char32Utils.IsSymbol(nextCharacter);
+                    bool isAfterQuotation = previousCharacter == '"';
+                    bool isBeforeQuotation = nextCharacter == '"';
 
                     // For cases where english words and farsi/arabic are mixed. This allows for using farsi/arabic, english and numbers in one sentence.
                     // If the space is between numbers,symbols or English words, keep the order
                     if (characterAtThisIndex == ' ' &&
-                        (isBeforeEnglishChar || isBeforeNumber || isBeforeSymbol) &&
-                        (isAfterEnglishChar || isAfterNumber || isAfterSymbol))
+                        (isBeforeEnglishChar || isBeforeNumber || isBeforeSymbol || isBeforeQuotation) &&
+                        (isAfterEnglishChar || isAfterNumber || isAfterSymbol || isAfterQuotation))
                     {
                         LtrTextHolder.Add(characterAtThisIndex);
                         continue;
