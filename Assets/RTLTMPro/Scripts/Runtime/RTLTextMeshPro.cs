@@ -7,7 +7,7 @@ namespace RTLTMPro
     public class RTLTextMeshPro : TextMeshProUGUI
     {
         // ReSharper disable once InconsistentNaming
-#if TMP_VERSION_2_1_0_OR_NEWER
+#if TMP_VERSION_2_1_0_OR_NEWER || UGUI_VERSION_2_0_0_OR_NEWER
         public override string text
 #else
         public new string text
